@@ -1,0 +1,31 @@
+---
+const props = Astro.props;
+console.log(props);
+---
+
+<span class=`click-item ${props.item}`>
+  <slot />
+</span>
+
+<script define:vars={{ props }} is:inline>
+  const scroll = document.querySelector(`#${props.item}`);
+  const innerContents = document.querySelector(`.inner-contents-height`);
+  const rect = scroll.getBoundingClientRect();
+  const spanPosition = rect.top + window.scrollY;
+
+  const handleClick = () => {
+    innerContents.scrollTo({
+      top: spanPosition - 80,
+      behavior: 'smooth',
+    });
+  };
+
+  const clickItemList = document.querySelector(`.click-item.${props.item}`);
+  clickItemList.addEventListener(`click`, () => handleClick());
+</script>
+
+<style>
+  span {
+    cursor: pointer;
+  }
+</style>

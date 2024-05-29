@@ -6,18 +6,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import BlogPost from '../../layouts/BlogPost.astro';
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
 const posts = (await getCollection('RxJS')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 ---
 
-<BlogPost>
-  <Header />
+<DefaultLayout>
   <main>
     <section>
       <ul>
         {
           posts.map((post) => (
             <li>
-              <a href={`/blog/${post.slug}/`}>
+              <a href={`/rxjs/${post.slug}/`}>
                 <img width={720} height={360} src={post.data.heroImage} alt="" />
                 <h4 class="title">{post.data.title}</h4>
                 <p class="date">
@@ -30,5 +30,4 @@ const posts = (await getCollection('RxJS')).sort((a, b) => a.data.pubDate.valueO
       </ul>
     </section>
   </main>
-  <Footer />
-</BlogPost>
+</DefaultLayout>

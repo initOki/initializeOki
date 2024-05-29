@@ -1,57 +1,61 @@
 ---
-import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import ScrollToId from '../../utils/ScrollToId.astro';
 ---
 
-<DefaultLayout>
-  <div class="mb-[20px]">
-    <p>일반적인 방식</p>
-    <button id="Click1">button</button>
-  </div>
+<div class="mb-[20px]">
+  <p>일반적인 방식</p>
+  <button id="Click1">button</button>
+</div>
 
-  <div class="mb-[30px]">
-    <p>RxJS를 사용한 방식</p>
-    <button id="Click2">button</button>
-  </div>
+<div class="mb-[30px]">
+  <p>RxJS를 사용한 방식</p>
+  <button id="Click2">button</button>
+</div>
 
-  <div class="divider"></div>
+<div class="divider"></div>
 
-  <div class="mb-[20px]">
-    <h6>Purity</h6>
-    <p>Normal Button</p>
-    <button id="NormalCountButton">button</button>
-  </div>
+<div class="mb-[20px]">
+  <h6>
+    <ScrollToId item="purity">Purity</ScrollToId>
+  </h6>
+  <p>Normal Button</p>
+  <button id="NormalCountButton">button</button>
+</div>
 
-  <div>
-    <p>RxJS Button</p>
-    <button id="RxJSCountButton">button</button>
-  </div>
+<div>
+  <p>RxJS Button</p>
+  <button id="RxJSCountButton">button</button>
+</div>
 
-  <div class="divider"></div>
+<div class="divider"></div>
 
-  <div class="mb-[20px]">
-    <h6>Flow</h6>
-    <p>Normal Button</p>
-    <button id="NormalFlowButton">button</button>
-  </div>
+<div class="mb-[20px]">
+  <h6>
+    <ScrollToId item="flow">Flow</ScrollToId>
+  </h6>
+  <p>Normal Button</p>
+  <button id="NormalFlowButton">button</button>
+</div>
 
-  <div>
-    <p>RxJS Button</p>
-    <button id="RxJSFlowButton">button</button>
-  </div>
+<div>
+  <p>RxJS Button</p>
+  <button id="RxJSFlowButton">button</button>
+</div>
 
-  <div class="divider"></div>
+<div class="divider"></div>
 
-  <div class="mb-[20px]">
-    <h6>Values</h6>
-    <p>Normal Button</p>
-    <button id="NormalValuesButton">button</button>
-  </div>
+<div class="mb-[20px]">
+  <h6>
+    <ScrollToId item="values">Values</ScrollToId>
+  </h6>
+  <p>Normal Button</p>
+  <button id="NormalValuesButton">button</button>
+</div>
 
-  <div>
-    <p>RxJS Button</p>
-    <button id="RxJSValuesButton">button</button>
-  </div>
-</DefaultLayout>
+<div>
+  <p>RxJS Button</p>
+  <button id="RxJSValuesButton">button</button>
+</div>
 
 <script>
   import { toast } from 'sonner';
@@ -115,7 +119,6 @@ import DefaultLayout from '../../layouts/DefaultLayout.astro';
   let lastClick = Date.now() - rate;
   normalValuesButton.addEventListener('click', (event) => {
     if (Date.now() - lastClick >= rate) {
-      console.log(event);
       count += event.clientX;
       toast.success(count, event.clientX);
       lastClick = Date.now();

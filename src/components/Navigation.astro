@@ -1,0 +1,31 @@
+---
+import HeaderLink from './HeaderLink.astro';
+---
+
+<nav>
+  <div>
+    <HeaderLink href="/">Home</HeaderLink>
+    <HeaderLink href="/rxjs">RxJS</HeaderLink>
+  </div>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 200px;
+    height: 100vh;
+    background-color: #f1f1f1;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding: 1rem;
+  }
+</style>

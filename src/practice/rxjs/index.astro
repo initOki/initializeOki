@@ -1,0 +1,27 @@
+---
+import FirstRxjs from './first-rxjs.astro';
+
+const props = Astro.props;
+
+const rxjsComponent = {
+  'first-rxjs': FirstRxjs,
+};
+
+const component = () => {
+  const ComponentToRender = rxjsComponent[props.key];
+  return ComponentToRender;
+};
+---
+
+<div>
+  {
+    () => {
+      const ComponentToRender = rxjsComponent[props.key];
+      if (ComponentToRender === undefined) {
+        return <div>Component not found</div>;
+      } else {
+        return <ComponentToRender />;
+      }
+    }
+  }
+</div>

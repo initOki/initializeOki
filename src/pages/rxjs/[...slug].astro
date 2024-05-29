@@ -1,0 +1,30 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import Practice from '../../practice/rxjs/index.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('RxJS');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<'RxJS'>;
+
+const post = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<DefaultLayout>
+  <div class="post flex">
+    <div class="p-[20px] inner-contents-height overflow-scroll">
+      <Content />
+    </div>
+    <div class="divider vertical"></div>
+    <div class="w-full p-[20px] inner-contents-height overflow-scroll">
+      <Practice key={post.data.linkPage} />
+    </div>
+  </div>
+</DefaultLayout>
