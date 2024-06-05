@@ -136,6 +136,19 @@ hr {
 	height: calc(100vh - 36px - 20px);
 }
 
+.default-button {
+	padding: 5px 8px;
+	border: 1px solid #333333;
+	border-radius: 6px;
+	color: #333333;
+}
+
+.default-button:hover {
+	background-color: #333333;
+	color: #ffffff;
+	transition: all .2s;
+}
+
 @media (max-width: 720px) {
 	body {
 		font-size: 18px;

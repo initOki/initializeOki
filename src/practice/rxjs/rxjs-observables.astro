@@ -1,0 +1,39 @@
+---
+
+---
+
+<h2>RxJS Observables</h2>
+<p>Click the button to subscribe to an observable and display the values.</p>
+<button id="ObservableButton" class="default-button">Subscribe</button>
+
+<script>
+  import { Observable } from 'rxjs';
+  import { toast } from 'sonner';
+
+  const observable = new Observable((subscriber) => {
+    subscriber.next(1);
+    subscriber.next(2);
+    subscriber.next(3);
+    setTimeout(() => {
+      subscriber.next(4);
+      subscriber.complete();
+    }, 1000);
+  });
+
+  const handleClick = () => {
+    observable.subscribe({
+      next(x) {
+        toast.success('got value ' + x);
+      },
+      error(err) {
+        toast.error('something wrong occurred: ' + err);
+      },
+      complete() {
+        toast.success('done');
+      },
+    });
+  };
+
+  const button = document.getElementById('ObservableButton');
+  button.addEventListener('click', handleClick);
+</script>
