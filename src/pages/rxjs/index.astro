@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
-const posts = (await getCollection('RxJS')).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+const posts = (await getCollection('RxJS')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <DefaultLayout>
@@ -11,13 +11,15 @@ const posts = (await getCollection('RxJS')).sort((a, b) => a.data.pubDate.valueO
       <ul>
         {
           posts.map((post) => (
-            <li>
-              <a href={`/rxjs/${post.slug}/`}>
-                <img width={720} height={360} src={post.data.heroImage} alt="" />
-                <h4 class="title">{post.data.title}</h4>
-                <p class="date">
-                  <FormattedDate date={post.data.pubDate} />
-                </p>
+            <li class="pb-[20px] mb-[20px]">
+              <a href={`/rxjs/${post.slug}/`} class="flex items-center">
+                <img class="mr-[15px]" width={60} src={post.data.heroImage} alt="heroImage" />
+                <div>
+                  <h4 class="title text-[18px]">{post.data.title}</h4>
+                  <p class="date text-[14px] text-[#757575]">
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                </div>
               </a>
             </li>
           ))
@@ -26,3 +28,9 @@ const posts = (await getCollection('RxJS')).sort((a, b) => a.data.pubDate.valueO
     </section>
   </main>
 </DefaultLayout>
+
+<style is:inline>
+  li:not(:last-child) {
+    border-bottom: 1px solid #eaeaea;
+  }
+</style>

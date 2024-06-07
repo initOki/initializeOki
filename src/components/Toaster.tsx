@@ -1,7 +1,7 @@
 import { Toaster } from 'sonner';
 
 const Toast = () => {
-  return <Toaster />;
+  return <Toaster visibleToasts={10} />;
 };
 
 export default Toast;
