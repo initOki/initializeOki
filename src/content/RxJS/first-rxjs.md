@@ -97,8 +97,8 @@ const rate = 1000;
 let lastClick = Date.now() - rate;
 normalValuesButton.addEventListener('click', (event) => {
   if (Date.now() - lastClick >= rate) {
-    count += event.clientX;
-    toast.success(count, event.clientX);
+    count += event?.clientX;
+    toast.success(count, event?.clientX);
     lastClick = Date.now();
   }
 });
@@ -110,7 +110,7 @@ const RxJSValuesButton = document.querySelector('#RxJSValuesButton');
 fromEvent(RxJSValuesButton, 'click')
   .pipe(
     throttleTime(1000),
-    map((event) => event.clientX),
+    map((event) => event?.clientX),
     scan((count, clientX) => count + clientX, 0),
   )
   .subscribe((count) => toast.success(count));

@@ -59,13 +59,13 @@
   });
 
   const handleClickXButton = () => {
-    foo.subscribe((x) => {
+    foo.subscribe((x: number) => {
       toast.success(x);
     });
   };
 
   const handleClickYButton = () => {
-    foo.subscribe((y) => {
+    foo.subscribe((y: number) => {
       toast.success(y);
     });
   };
@@ -74,6 +74,4 @@
   yButton?.addEventListener('click', handleClickYButton);
 </script>
 
-<style>
-
-</style>
+<style></style>

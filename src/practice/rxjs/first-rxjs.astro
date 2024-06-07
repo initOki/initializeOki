@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import ScrollToId from '../../utils/ScrollToId.astro';
 ---
 
@@ -120,10 +121,10 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   let count = 0;
   const rate = 1000;
   let lastClick = Date.now() - rate;
-  normalValuesButton?.addEventListener('click', (event) => {
+  normalValuesButton?.addEventListener('click', (event: MouseEvent) => {
     if (Date.now() - lastClick >= rate) {
       count += event.clientX;
-      toast.success(count, event.clientX);
+      toast.success(count);
       lastClick = Date.now();
     }
   });
@@ -133,7 +134,7 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   fromEvent(RxJSValuesButton, 'click')
     .pipe(
       throttleTime(1000),
-      map((event) => event.clientX),
+      map((event: MouseEvent) => event?.clientX),
       scan((count, clientX) => count + clientX, 0),
     )
     .subscribe((count) => toast.success(count));
