@@ -1,5 +1,5 @@
 ---
-
+export const prerender = false;
 ---
 
 <div class="mb-[30px]">
@@ -15,6 +15,7 @@
 </div>
 
 <script>
+  if (!window || !document) return;
   import { Observable } from 'rxjs';
   import { toast } from 'sonner';
 
@@ -47,6 +48,7 @@
 </script>
 
 <script>
+  if (!window || !document) return;
   import { Observable } from 'rxjs';
   import { toast } from 'sonner';
 
