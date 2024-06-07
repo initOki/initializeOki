@@ -62,9 +62,10 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   import { fromEvent, scan, throttleTime } from 'rxjs';
 
   const click1 = document.querySelector('#Click1');
-  click1.addEventListener('click', () => toast.success('HI'));
+  click1?.addEventListener('click', () => toast.success('HI'));
 
   const click2 = document.querySelector('#Click2');
+  if (!click2) return;
   fromEvent(click2, 'click').subscribe(() => toast.success('RxJS!'));
 </script>
 
@@ -75,9 +76,10 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   // Purity
   const normalCountButton = document.querySelector('#NormalCountButton');
   let count = 0;
-  normalCountButton.addEventListener('click', () => toast.success(`Clicked ${++count} times`));
+  normalCountButton?.addEventListener('click', () => toast.success(`Clicked ${++count} times`));
 
   const RxJSCountButton = document.querySelector('#RxJSCountButton');
+  if (!RxJSCountButton) return;
   fromEvent(RxJSCountButton, 'click')
     .pipe(scan((count) => count + 1, 0))
     .subscribe((count) => toast.success(`Clicked ${count} times`));
@@ -92,7 +94,7 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   let count2 = 0;
   const rate = 1000;
   let lastClick = Date.now() - rate;
-  normalFlowButton.addEventListener('click', () => {
+  normalFlowButton?.addEventListener('click', () => {
     if (Date.now() - lastClick >= rate) {
       toast.success(`Click ${++count2} times`);
       lastClick = Date.now();
@@ -100,6 +102,7 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   });
 
   const RxJSFlowButton = document.querySelector('#RxJSFlowButton');
+  if (!RxJSFlowButton) return;
   fromEvent(RxJSFlowButton, 'click')
     .pipe(
       throttleTime(rate),
@@ -117,7 +120,7 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   let count = 0;
   const rate = 1000;
   let lastClick = Date.now() - rate;
-  normalValuesButton.addEventListener('click', (event) => {
+  normalValuesButton?.addEventListener('click', (event) => {
     if (Date.now() - lastClick >= rate) {
       count += event.clientX;
       toast.success(count, event.clientX);
@@ -126,6 +129,7 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   });
 
   const RxJSValuesButton = document.querySelector('#RxJSValuesButton');
+  if (!RxJSValuesButton) return;
   fromEvent(RxJSValuesButton, 'click')
     .pipe(
       throttleTime(1000),

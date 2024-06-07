@@ -52,25 +52,28 @@
 
   const xButton = document.getElementById('ObservableX');
   const yButton = document.getElementById('ObservableY');
-  
+
   const foo = new Observable((subscriber) => {
     toast.success('Hello');
     subscriber.next(42);
-  })
+  });
 
   const handleClickXButton = () => {
     foo.subscribe((x) => {
       toast.success(x);
-    })
-  }
+    });
+  };
 
   const handleClickYButton = () => {
     foo.subscribe((y) => {
       toast.success(y);
-    })
-  }
+    });
+  };
 
   xButton?.addEventListener('click', handleClickXButton);
   yButton?.addEventListener('click', handleClickYButton);
 </script>
 
+<style>
+
+</style>
