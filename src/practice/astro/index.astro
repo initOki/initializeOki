@@ -1,0 +1,27 @@
+---
+import ViewTransition from './ViewTransition.astro';
+
+const props = Astro.props;
+
+const astroPreviewComponent = {
+  ViewTransition: ViewTransition,
+};
+
+const component = () => {
+  const ComponentToRender = astroPreviewComponent[props.key];
+  return ComponentToRender;
+};
+---
+
+<div>
+  {
+    () => {
+      const ComponentToRender = astroPreviewComponent[props.key];
+      if (ComponentToRender === undefined) {
+        return <div>Component not found</div>;
+      } else {
+        return <ComponentToRender />;
+      }
+    }
+  }
+</div>

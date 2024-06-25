@@ -1,0 +1,32 @@
+---
+export const prerender = true;
+
+import { type CollectionEntry, getCollection } from 'astro:content';
+import DefaultLayout from '../../layouts/DefaultLayout.astro';
+import AstroPractice from '../../practice/astro/index.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('onlyAstro');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+type Props = CollectionEntry<'onlyAstro'>;
+
+const post = Astro.props;
+
+const { Content } = await post.render();
+---
+
+<DefaultLayout>
+  <div class="post flex">
+    <div class="w-full min-w-[800px] p-[20px] inner-contents-height overflow-scroll">
+      <Content />
+    </div>
+    <div class="divider vertical"></div>
+    <div class="w-full p-[20px] inner-contents-height overflow-scroll">
+      <AstroPractice key={post.data.linkPage} />
+    </div>
+  </div>
+</DefaultLayout>
