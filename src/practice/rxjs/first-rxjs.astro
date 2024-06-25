@@ -59,20 +59,20 @@ import ScrollToId from '../../utils/ScrollToId.astro';
 </div>
 
 <script>
-  if (!window || !document) return;
   import { toast } from 'sonner';
-  import { fromEvent, scan, throttleTime } from 'rxjs';
+  import { fromEvent } from 'rxjs';
 
   const click1 = document.querySelector('#Click1');
   click1?.addEventListener('click', () => toast.success('HI'));
 
   const click2 = document.querySelector('#Click2');
-  if (!click2) return;
-  fromEvent(click2, 'click').subscribe(() => toast.success('RxJS!'));
+  if (click2) {
+    fromEvent(click2, 'click').subscribe(() => toast.success('RxJS!'));
+  }
 </script>
 
 <script>
-  if (!window || !document) return;
+  import { Code } from 'astro:components';
   import { fromEvent, scan, throttleTime } from 'rxjs';
   import { toast } from 'sonner';
 
@@ -82,14 +82,14 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   normalCountButton?.addEventListener('click', () => toast.success(`Clicked ${++count} times`));
 
   const RxJSCountButton = document.querySelector('#RxJSCountButton');
-  if (!RxJSCountButton) return;
-  fromEvent(RxJSCountButton, 'click')
-    .pipe(scan((count) => count + 1, 0))
-    .subscribe((count) => toast.success(`Clicked ${count} times`));
+  if (RxJSCountButton) {
+    fromEvent(RxJSCountButton, 'click')
+      .pipe(scan((count) => count + 1, 0))
+      .subscribe((count) => toast.success(`Clicked ${count} times`));
+  }
 </script>
 
 <script>
-  if (!window || !document) return;
   import { fromEvent, scan, throttleTime } from 'rxjs';
   import { toast } from 'sonner';
 
@@ -106,17 +106,17 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   });
 
   const RxJSFlowButton = document.querySelector('#RxJSFlowButton');
-  if (!RxJSFlowButton) return;
-  fromEvent(RxJSFlowButton, 'click')
-    .pipe(
-      throttleTime(rate),
-      scan((count) => count + 1, 0),
-    )
-    .subscribe((count2) => toast.success(`Click ${count2} times`));
+  if (RxJSFlowButton) {
+    fromEvent(RxJSFlowButton, 'click')
+      .pipe(
+        throttleTime(rate),
+        scan((count) => count + 1, 0),
+      )
+      .subscribe((count2) => toast.success(`Click ${count2} times`));
+  }
 </script>
 
 <script>
-  if (!window || !document) return;
   import { fromEvent, throttleTime, map, scan } from 'rxjs';
   import { toast } from 'sonner';
 
@@ -134,14 +134,15 @@ import ScrollToId from '../../utils/ScrollToId.astro';
   });
 
   const RxJSValuesButton = document.querySelector('#RxJSValuesButton');
-  if (!RxJSValuesButton) return;
-  fromEvent(RxJSValuesButton, 'click')
-    .pipe(
-      throttleTime(1000),
-      map((event: MouseEvent) => event?.clientX),
-      scan((count, clientX) => count + clientX, 0),
-    )
-    .subscribe((count) => toast.success(count));
+  if (RxJSValuesButton) {
+    fromEvent(RxJSValuesButton, 'click')
+      .pipe(
+        throttleTime(1000),
+        map((event: MouseEvent) => event?.clientX),
+        scan((count, clientX) => count + clientX, 0),
+      )
+      .subscribe((count) => toast.success(count));
+  }
 </script>
 
 <style>
