@@ -4,6 +4,7 @@ export const prerender = true;
 import { type CollectionEntry, getCollection } from 'astro:content';
 import DefaultLayout from '../../layouts/DefaultLayout.astro';
 import AstroPractice from '../../practice/astro/index.astro';
+import Prose from '../../components/Prose.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('onlyAstro');
@@ -22,7 +23,9 @@ const { Content } = await post.render();
 <DefaultLayout>
   <div class="post flex">
     <div class="w-full min-w-[800px] p-[20px] inner-contents-height overflow-scroll">
-      <Content />
+      <Prose>
+        <Content />
+      </Prose>
     </div>
     <div class="divider vertical"></div>
     <div class="w-full p-[20px] inner-contents-height overflow-scroll">
